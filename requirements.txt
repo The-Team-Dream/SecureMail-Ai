@@ -1,0 +1,7 @@
+langchain
+langchain-groq
+langgraph
+grpcio
+grpcio-tools
+python-dotenv
+dnspython
