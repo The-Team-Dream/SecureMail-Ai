@@ -15,17 +15,17 @@ try:
 except ImportError:
     _version_not_supported = True
 
-if _version_not_supported:
+"""if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
         + ' but the generated code in secure_mail_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
-    )
+    )"""
 
 
-class EmailGuardStub(object):
+class AIAgentServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -34,43 +34,43 @@ class EmailGuardStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.ScanEmail = channel.unary_unary(
-                '/EmailGuard/ScanEmail',
-                request_serializer=secure__mail__pb2.ScanRequest.SerializeToString,
-                response_deserializer=secure__mail__pb2.ScanResponse.FromString,
+        self.GenerateReport = channel.unary_unary(
+                '/aiagent.AIAgentService/GenerateReport',
+                request_serializer=secure__mail__pb2.EmailAnalysisRequest.SerializeToString,
+                response_deserializer=secure__mail__pb2.AnalysisReport.FromString,
                 _registered_method=True)
 
 
-class EmailGuardServicer(object):
+class AIAgentServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def ScanEmail(self, request, context):
+    def GenerateReport(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_EmailGuardServicer_to_server(servicer, server):
+def add_AIAgentServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ScanEmail': grpc.unary_unary_rpc_method_handler(
-                    servicer.ScanEmail,
-                    request_deserializer=secure__mail__pb2.ScanRequest.FromString,
-                    response_serializer=secure__mail__pb2.ScanResponse.SerializeToString,
+            'GenerateReport': grpc.unary_unary_rpc_method_handler(
+                    servicer.GenerateReport,
+                    request_deserializer=secure__mail__pb2.EmailAnalysisRequest.FromString,
+                    response_serializer=secure__mail__pb2.AnalysisReport.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'EmailGuard', rpc_method_handlers)
+            'aiagent.AIAgentService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('EmailGuard', rpc_method_handlers)
+    server.add_registered_method_handlers('aiagent.AIAgentService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class EmailGuard(object):
+class AIAgentService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def ScanEmail(request,
+    def GenerateReport(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,9 +83,9 @@ class EmailGuard(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/EmailGuard/ScanEmail',
-            secure__mail__pb2.ScanRequest.SerializeToString,
-            secure__mail__pb2.ScanResponse.FromString,
+            '/aiagent.AIAgentService/GenerateReport',
+            secure__mail__pb2.EmailAnalysisRequest.SerializeToString,
+            secure__mail__pb2.AnalysisReport.FromString,
             options,
             channel_credentials,
             insecure,

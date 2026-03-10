@@ -1,13 +1,13 @@
-
+version: '3.8'
 
 services:
-  securemail-agent:
+  agent:
     build: .
-    container_name: securemail_app
-    ports:
-      - "50051:50051"
+    container_name: securemail_agent_container
+    restart: unless-stopped
     env_file:
       - .env
+    ports:
+      - "50051:50051"
     volumes:
-      - .:/app
-    restart: always
+      - ./app:/code/app
