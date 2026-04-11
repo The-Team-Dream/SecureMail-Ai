@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import secure_mail_pb2 as secure__mail__pb2
+import ai_agent_pb2 as ai__agent__pb2
 
 GRPC_GENERATED_VERSION = '1.78.0'
 GRPC_VERSION = grpc.__version__
@@ -15,14 +15,14 @@ try:
 except ImportError:
     _version_not_supported = True
 
-"""if _version_not_supported:
+if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + ' but the generated code in secure_mail_pb2_grpc.py depends on'
+        + ' but the generated code in ai_agent_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
-    )"""
+    )
 
 
 class AIAgentServiceStub(object):
@@ -36,8 +36,8 @@ class AIAgentServiceStub(object):
         """
         self.GenerateReport = channel.unary_unary(
                 '/aiagent.AIAgentService/GenerateReport',
-                request_serializer=secure__mail__pb2.EmailAnalysisRequest.SerializeToString,
-                response_deserializer=secure__mail__pb2.AnalysisReport.FromString,
+                request_serializer=ai__agent__pb2.EmailAnalysisRequest.SerializeToString,
+                response_deserializer=ai__agent__pb2.AnalysisReport.FromString,
                 _registered_method=True)
 
 
@@ -55,8 +55,8 @@ def add_AIAgentServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GenerateReport': grpc.unary_unary_rpc_method_handler(
                     servicer.GenerateReport,
-                    request_deserializer=secure__mail__pb2.EmailAnalysisRequest.FromString,
-                    response_serializer=secure__mail__pb2.AnalysisReport.SerializeToString,
+                    request_deserializer=ai__agent__pb2.EmailAnalysisRequest.FromString,
+                    response_serializer=ai__agent__pb2.AnalysisReport.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -84,8 +84,8 @@ class AIAgentService(object):
             request,
             target,
             '/aiagent.AIAgentService/GenerateReport',
-            secure__mail__pb2.EmailAnalysisRequest.SerializeToString,
-            secure__mail__pb2.AnalysisReport.FromString,
+            ai__agent__pb2.EmailAnalysisRequest.SerializeToString,
+            ai__agent__pb2.AnalysisReport.FromString,
             options,
             channel_credentials,
             insecure,
