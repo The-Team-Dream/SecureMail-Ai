@@ -31,7 +31,7 @@ google-genai==1.55.0
 googleapis-common-protos==1.72.0
 greenlet==3.3.0
 groq==0.37.1
-grpcio==1.76.0
+grpcio>=1.78.0
 grpcio-status==1.76.0
 h11==0.16.0
 hf-xet==1.2.0
@@ -107,4 +107,4 @@ xxhash==3.6.0
 yarl==1.22.0
 zstandard==0.25.0
 grpcio
-grpcio-tools
+grpcio-tools>=1.78.0
