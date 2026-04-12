@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc python3-dev
 RUN pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir grpcio==1.78.0 grpcio-tools==1.78.0
 
-COPY SecureMail-Ai/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY SecureMail-Ai/app /code/app
+COPY app /code/app
 WORKDIR /code/app
 
 ENV PYTHONPATH=/code/app:/code/app/protos
