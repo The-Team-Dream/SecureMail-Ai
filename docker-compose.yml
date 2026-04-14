@@ -1,13 +1,13 @@
-version: '3.8'
-
 services:
-  agent:
-    build: .
-    container_name: securemail_agent_container
-    restart: unless-stopped
-    env_file:
-      - .env
+  ai:
+    build:
+      context: ..
+      dockerfile: SecureMail-Ai/Dockerfile
+    container_name: securemail_ai
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GRPC_PORT: "50051"
+      AI_MAX_CONCURRENT: "4"
     ports:
       - "50051:50051"
-    volumes:
-      - ./app:/code/app
+    restart: unless-stopped
