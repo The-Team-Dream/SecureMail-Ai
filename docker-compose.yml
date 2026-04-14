@@ -10,4 +10,9 @@ services:
       AI_MAX_CONCURRENT: "4"
     ports:
       - "50051:50051"
-    restart: unless-stopped
+    networks:
+      - securemail_network
+
+networks:
+  securemail_network:
+    external: true
