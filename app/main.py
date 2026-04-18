@@ -104,7 +104,7 @@ def serve():
     pool = futures.ThreadPoolExecutor(max_workers=max(4, MAX_CONCURRENT * 2))
     server = grpc.server(pool, options=_GRPC_OPTIONS)
     pb2_grpc.add_AIAgentServiceServicer_to_server(AIAgentService(), server)
-    port = os.getenv("GRPC_PORT", "50051")
+    port = os.getenv("AI_PORT", "50051")
     bind = f"0.0.0.0:{port}"
     server.add_insecure_port(bind)
     server.start()
