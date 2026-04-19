@@ -1,0 +1,40 @@
+# Python virtual environment (we install inside Docker, not from host)
+.venv/
+venv/
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyc
+
+# Cache directories
+.cache/
+*.egg-info/
+dist/
+build/
+
+# Environment files (injected by docker compose, not baked in)
+.env
+.env.*
+
+# Version control
+.git/
+.gitignore
+.gitmodules
+
+# Documentation
+*.md
+README*
+
+# Editor / OS
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Test artifacts
+*.log
+logs/
