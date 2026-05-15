@@ -5,7 +5,7 @@ from typing import Any, Dict, Union
 
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 
 from agent.schema import EmailAnalysisReport
 
@@ -86,15 +86,12 @@ Return ONLY a valid JSON following the EmailAnalysisReport schema to write the s
 
 def analyze_email(raw_data: Dict[str, Any]) -> Union[EmailAnalysisReport, Dict[str, Any]]:
     try:
-        groq_api_key = os.getenv("GROQ_API_KEY")
-        if not groq_api_key:
-            logger.error("GROQ_API_KEY not found in environment variables.")
-            raise ValueError("GROQ_API_KEY is required.")
-
-        model = ChatGroq(
-            model="llama-3.3-70b-versatile",
+        # Initialize Local Ollama model instead of Groq
+        # Ensure you ran `ollama run llama3.1` in the terminal and it is running on localhost:11434
+        model = ChatOllama(
+            model="llama3.1",
             temperature=0,
-            groq_api_key=groq_api_key,
+            base_url="http://localhost:11434"
         )
 
         prompt = ChatPromptTemplate.from_messages(
