@@ -89,7 +89,7 @@ def analyze_email(raw_data: Dict[str, Any]) -> Union[EmailAnalysisReport, Dict[s
         # Initialize Local Ollama model instead of Groq
         # Ensure you ran `ollama run llama3.1` in the terminal and it is running on localhost:11434
         model = ChatOllama(
-            model="llama3.1",
+            model="llama3.1:8b",
             temperature=0,
             base_url="http://localhost:11434"
         )
